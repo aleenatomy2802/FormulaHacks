@@ -1,0 +1,53 @@
+local Players = game:GetService("Players")
+
+-- Define the waiting room variables
+local waitingPlayers = {}
+local minPlayers = 3
+local countdownDuration = 5
+
+-- Function to update waiting players count
+local function updateWaitingPlayers()
+    return #waitingPlayers
+end
+
+-- Function to start the countdown
+local function startCountdown()
+    local countdownTime = countdownDuration
+    while countdownTime > 0 do
+        wait(1)
+        countdownTime = countdownTime - 1
+        -- Update countdown display (you can implement your own visual countdown here)
+        print("Countdown: " .. countdownTime)
+    end
+    -- Start the game after countdown ends
+    print("Game starting!")
+    -- Implement code to start your game here
+end
+
+-- Function to handle player joining
+local function playerJoined(player)
+    table.insert(waitingPlayers, player)
+    print(player.Name .. " joined the waiting room.")
+    local playerCount = updateWaitingPlayers()
+    if playerCount >= minPlayers then
+        -- Start the countdown
+        startCountdown()
+    else
+        print("Waiting for more players...")
+    end
+end
+
+-- Function to handle player leaving
+local function playerLeft(player)
+    for i, waitingPlayer in ipairs(waitingPlayers) do
+        if waitingPlayer == player then
+            table.remove(waitingPlayers, i)
+            break
+        end
+    end
+    print(player.Name .. " left the waiting room.")
+end
+
+-- Connect player joining and leaving events
+Players.PlayerAdded:Connect(playerJoined)
+Players.PlayerRemoving:Connect(playerLeft)
