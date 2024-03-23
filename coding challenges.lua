@@ -34,7 +34,7 @@ end
 -- Example usage
 -- Feel free to uncomment the following lines to test each challenge individually
 
--- print("Challenge 1 - Sum of Two Numbers:", sum(5, 7))
+print("Challenge 1 - Sum of Two Numbers:", sum(5, 7))
 -- print("Challenge 2 - Check if a Number is Even:", is_even(10))
 -- print("Challenge 3 - Area of a Rectangle:", rectangle_area(5, 3))
 -- print("Challenge 4 - Reversed String:", reverse_string("hello"))
